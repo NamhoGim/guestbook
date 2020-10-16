@@ -30,7 +30,7 @@
 <br><br><br>
 
 <form method="post" action="guestbooks/write">
-    이름 : <input type="tex" name="name"><br>
+    이름 : <input type="text" name="name"><br>
     내용 :
     <textarea name="content" cols="50" rows="5"></textarea><br>
     <input type="submit" value="확인">

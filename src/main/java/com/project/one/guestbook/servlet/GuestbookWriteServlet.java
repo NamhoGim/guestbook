@@ -27,7 +27,6 @@ public class GuestbookWriteServlet extends HttpServlet {
 
         guestbookDao.addGuestBook(guestbook);
 
-
         resp.sendRedirect("/guestbooks");
     }
 }

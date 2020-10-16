@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
+import java.util.List;
+import java.util.ArrayList;
 
 import com.project.one.guestbook.dto.Guestbook;
 import com.project.one.guestbook.util.DBUtil;

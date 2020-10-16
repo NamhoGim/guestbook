@@ -1,7 +1,5 @@
 package com.project.one.guestbook.servlet;
 
-
-
 import java.io.IOException;
 import java.util.List;
 
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.project.one.guestbook.dao.GuestbookDao;
 import com.project.one.guestbook.dto.Guestbook;
-
 
 @WebServlet("/guestbooks")
 public class GuestbookListServlet extends HttpServlet {

@@ -23,7 +23,7 @@ public class GuestbookDao {
 
             while (rs.next()){
                 Guestbook guestbook = new Guestbook (rs.getLong("id"), rs.getString("user_name")
-                        , rs.getString("description"), rs.getDate("DATETIME"));
+                        , rs.getString("description"), rs.getDate("datetime"));
 
                 guestbooks.add(guestbook);
             }

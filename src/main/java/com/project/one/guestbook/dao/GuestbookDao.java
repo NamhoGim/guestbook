@@ -10,5 +10,5 @@ public class GuestbookDao {
         return new ArrayList<>();
     }
 
-    public void addGuestBook(Guestbook guestbook) { }
+    public void addGuestBook(Guestbook guestbook) {}
 }

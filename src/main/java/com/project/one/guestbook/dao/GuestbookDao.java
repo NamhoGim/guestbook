@@ -7,16 +7,29 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.sql.DataSource;
+
 import com.project.one.guestbook.dto.Guestbook;
 import com.project.one.guestbook.util.DBUtil;
 
 public class GuestbookDao {
+
+    private DataSource ds;
+
+    public GuestbookDao() {
+        this.ds = new DBUtil();
+    }
+
+    public GuestbookDao(DataSource ds) {
+        this.ds = ds;
+    }
+
     public List<Guestbook> getGuestBooks() {
 
         List<Guestbook> guestbooks = new ArrayList<>();
         String sql = "SELECT * FROM user";
 
-        try(Connection conn = DBUtil.getConnection();
+        try(Connection conn = ds.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery()) {
 
@@ -37,7 +50,7 @@ public class GuestbookDao {
     public void addGuestBook(Guestbook guestbook) {
         String sql = "INSERT INTO user(user_name, description, datetime) VALUES(?, ?, ?)";
 
-        try(Connection conn = DBUtil.getConnection();
+        try(Connection conn = ds.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, guestbook.getName());

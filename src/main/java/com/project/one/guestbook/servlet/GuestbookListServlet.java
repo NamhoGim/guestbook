@@ -15,13 +15,22 @@ import com.project.one.guestbook.dto.Guestbook;
 
 @WebServlet("/guestbooks")
 public class GuestbookListServlet extends HttpServlet {
+    private final GuestbookDao guestbookDao;
+
+    public GuestbookListServlet() {
+        this.guestbookDao = new GuestbookDao();
+    }
+
+    public GuestbookListServlet(GuestbookDao guestbookDao) {
+        this.guestbookDao = guestbookDao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GuestbookDao dao = new GuestbookDao();
-        List<Guestbook> guestbookList =  dao.getGuestBooks();
-        req.setAttribute("guestbooks",guestbookList);
+        List<Guestbook> guestbookList = guestbookDao.getGuestBooks();
+        req.setAttribute("guestbooks", guestbookList);
 
-        RequestDispatcher rd = req.getRequestDispatcher("/guestbooks.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbooks.jsp");
         rd.forward(req,resp);
     }
 }

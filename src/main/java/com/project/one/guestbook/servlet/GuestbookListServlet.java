@@ -15,6 +15,8 @@ import com.project.one.guestbook.dto.Guestbook;
 
 @WebServlet("/guestbooks")
 public class GuestbookListServlet extends HttpServlet {
+    static final String GUESTBOOK_LIST_PAGE = "/WEB-INF/view/guestbooks.jsp";
+
     private final GuestbookDao guestbookDao;
 
     public GuestbookListServlet() {
@@ -30,7 +32,7 @@ public class GuestbookListServlet extends HttpServlet {
         List<Guestbook> guestbookList = guestbookDao.getGuestBooks();
         req.setAttribute("guestbooks", guestbookList);
 
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbooks.jsp");
-        rd.forward(req,resp);
+        RequestDispatcher rd = req.getRequestDispatcher(GUESTBOOK_LIST_PAGE);
+        rd.forward(req, resp);
     }
 }

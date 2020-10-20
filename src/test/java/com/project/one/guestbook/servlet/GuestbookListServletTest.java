@@ -2,6 +2,7 @@ package com.project.one.guestbook.servlet;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static com.project.one.guestbook.servlet.GuestbookListServlet.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.project.one.guestbook.dto.Guestbook;
 import com.project.one.guestbook.dao.GuestbookDao;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -43,7 +43,7 @@ public class GuestbookListServletTest {
         when(guestbookDao.getGuestBooks()).thenReturn(new ArrayList<>());
 
         when(request.getServletContext()).thenReturn(context);
-        when(request.getRequestDispatcher("/WEB-INF/view/guestbooks.jsp")).thenReturn(dispatcher);
+        when(request.getRequestDispatcher(GUESTBOOK_LIST_PAGE)).thenReturn(dispatcher);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class GuestbookListServletTest {
 
         guestbookListServlet.doGet(request, response);
 
-        verify(request, times(1)).getRequestDispatcher("/WEB-INF/view/guestbooks.jsp");
+        verify(request, times(1)).getRequestDispatcher(GUESTBOOK_LIST_PAGE);
         verify(request, never()).getSession();
         verify(dispatcher).forward(request, response);
     }

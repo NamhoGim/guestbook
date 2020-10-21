@@ -14,6 +14,16 @@ import com.project.one.guestbook.dto.Guestbook;
 @WebServlet("/guestbooks/write")
 public class GuestbookWriteServlet extends HttpServlet {
 
+    private final GuestbookDao guestbookDao;
+
+    public GuestbookWriteServlet() {
+        this.guestbookDao = new GuestbookDao();
+    }
+
+    public GuestbookWriteServlet(GuestbookDao guestbookDao) {
+        this.guestbookDao = guestbookDao;
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -23,7 +33,6 @@ public class GuestbookWriteServlet extends HttpServlet {
         String description = req.getParameter("content");
 
         Guestbook guestbook = new Guestbook(name, description);
-        GuestbookDao guestbookDao = new GuestbookDao();
 
         guestbookDao.addGuestBook(guestbook);
 

@@ -25,7 +25,6 @@ public class GuestbookWriteServletTest {
     @Mock private HttpServletRequest request;
     @Mock private HttpServletResponse response;
     @Mock private RequestDispatcher dispatcher;
-    @Mock private ServletContext context;
 
     @Mock private GuestbookDao guestbookDao;
 
@@ -34,7 +33,6 @@ public class GuestbookWriteServletTest {
         assertNotNull(request);
         assertNotNull(response);
         assertNotNull(dispatcher);
-        assertNotNull(context);
 
         assertNotNull(guestbookDao);
 

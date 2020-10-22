@@ -27,7 +27,6 @@ public class GuestbookListServletTest {
     @Mock private HttpServletRequest request;
     @Mock private HttpServletResponse response;
     @Mock private RequestDispatcher dispatcher;
-    @Mock private ServletContext context;
 
     @Mock private GuestbookDao guestbookDao;
 
@@ -36,13 +35,11 @@ public class GuestbookListServletTest {
         assertNotNull(request);
         assertNotNull(response);
         assertNotNull(dispatcher);
-        assertNotNull(context);
 
         assertNotNull(guestbookDao);
 
         when(guestbookDao.getGuestBooks()).thenReturn(new ArrayList<>());
 
-        when(request.getServletContext()).thenReturn(context);
         when(request.getRequestDispatcher(GUESTBOOK_LIST_PAGE)).thenReturn(dispatcher);
     }
 

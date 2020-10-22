@@ -2,10 +2,8 @@ package com.project.one.guestbook.servlet;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static com.project.one.guestbook.servlet.GuestbookListServlet.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -22,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.project.one.guestbook.dao.GuestbookDao;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GuestbookListServletTest {
+public class GuestbookWriteServletTest {
 
     @Mock private HttpServletRequest request;
     @Mock private HttpServletResponse response;
@@ -40,20 +38,16 @@ public class GuestbookListServletTest {
 
         assertNotNull(guestbookDao);
 
-        when(guestbookDao.getGuestBooks()).thenReturn(new ArrayList<>());
-
-        when(request.getServletContext()).thenReturn(context);
-        when(request.getRequestDispatcher(GUESTBOOK_LIST_PAGE)).thenReturn(dispatcher);
+        when(request.getParameter("name")).thenReturn("test-name");
+        when(request.getParameter("content")).thenReturn("test-content");
     }
 
     @Test
-    public void guestbookListServlet() throws ServletException, IOException {
-        GuestbookListServlet guestbookListServlet = new GuestbookListServlet(guestbookDao);
+    public void guestbookWriteServlet() throws ServletException, IOException {
+        GuestbookWriteServlet guestbookWriteServlet = new GuestbookWriteServlet(guestbookDao);
 
-        guestbookListServlet.doGet(request, response);
+        guestbookWriteServlet.doPost(request, response);
 
-        verify(request, times(1)).getRequestDispatcher(GUESTBOOK_LIST_PAGE);
-        verify(request, never()).getSession();
-        verify(dispatcher).forward(request, response);
+        verify(response).sendRedirect("/guestbooks");
     }
 }
